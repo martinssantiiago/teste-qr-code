@@ -6,35 +6,105 @@
     <title>QR Code Scanner</title>
     <script src="./node_modules/html5-qrcode/html5-qrcode.min.js"></script>
     <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          Cantarell,
+          "Open Sans",
+          "Helvetica Neue",
+          sans-serif;
+      }
+
+      main {
+        background-color: rgba(255, 177, 255, 0.363);
+        border: 1px solid rgba(183, 0, 255, 0.397);
+        border-radius: 10px;
+        margin: 20px;
+      }
+
+      button {
+        padding: 13px;
+        margin: 10px;
+        border-radius: 8px;
+        border: 1px solid rgba(183, 0, 255, 0.288);
+        background-color: white;
+        color: rgb(207, 74, 207);
+        cursor: pointer;
+        transition: .4s;
+      }
+
+      button:hover {
+        transform: translateY(-5px);
+        background-color: rgba(211, 211, 211, 0.267);
+        border: 1px solid rgba(0, 0, 0, 0.349);
+        backdrop-filter: blur(10px);
+      }
+
+      #html5-qrcode-anchor-scan-type-change {
+        text-decoration: none !important;
+      }
+
+      img {
+        display: none;
+      }
+
+      ion-icon {
+        background-color: white;
+        display: block;
+        padding: 20px;
+        margin: 20px auto;
+        border-radius: 50%;
+        font-size: 4em;      
+      }
+
+      #reader {
+        border: none !important; 
+      }
     </style>
   </head>
   <body>
-     <main>
-       <div id="reader"></div>
-       <div id="result"></div>
-     </main>
+    <main>
+      <ion-icon name="qr-code-outline"></ion-icon>
+      <div id="reader">
+      </div>
+      <div id="result"></div>
+    </main>
 
-
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
 
     <script src="https://unpkg.com/html5-qrcode"></script>
 
-
     <script>
-
-
-
-     const scanner = new Html5QrcodeScanner(`reader`, {
+      const scanner = new Html5QrcodeScanner(`reader`, {
         qrbox: {
           width: 250,
           height: 250,
         },
         fps: 20,
-     });
-     
-     scanner.render(sucesso, erro); 
+      });
 
-     function sucesso(result) {
+      scanner.render(sucesso, erro);
+
+      function sucesso(result) {
         document.getElementById(`result`).innerHTML = `
         <h2>sucesso</h2>
         <p><a href="${result}">${result}</a></p>
@@ -42,13 +112,11 @@
 
         scanner.clear();
         document.getElementById(`render`).remove();
-     }
+      }
 
-     function erro(err) {
-      console.log(err);
-
-     }
-
+      function erro(err) {
+        console.log(err);
+      }
     </script>
   </body>
 </html>
