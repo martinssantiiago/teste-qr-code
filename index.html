@@ -6,11 +6,11 @@
     <title>QR Code Scanner</title>
     <script src="./node_modules/html5-qrcode/html5-qrcode.min.js"></script>
     <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
       body {
         font-family:
@@ -42,15 +42,17 @@
         background-color: white;
         color: rgb(207, 74, 207);
         cursor: pointer;
-        transition: .4s;
+        transition: 0.4s;
       }
 
       button:hover {
         transform: translateY(-5px);
-        background-color: rgba(211, 211, 211, 0.267);
-        border: 1px solid rgba(0, 0, 0, 0.349);
+        background-color: white;
+        border: 1px solid rgba(0, 0, 0, 0.466);
         backdrop-filter: blur(10px);
       }
+
+  
 
       #html5-qrcode-anchor-scan-type-change {
         text-decoration: none !important;
@@ -66,19 +68,18 @@
         padding: 20px;
         margin: 20px auto;
         border-radius: 50%;
-        font-size: 4em;      
+        font-size: 4em;
       }
 
       #reader {
-        border: none !important; 
+        border: none !important;
       }
     </style>
   </head>
   <body>
     <main>
       <ion-icon name="qr-code-outline"></ion-icon>
-      <div id="reader">
-      </div>
+      <div id="reader"></div>
       <div id="result"></div>
     </main>
 
@@ -117,6 +118,15 @@
       function erro(err) {
         console.log(err);
       }
+
+setTimeout(() => {
+  const botoes = document.querySelectorAll("#reader button");
+
+  botoes.forEach(btn => {
+    btn.innerText = "Abrir câmera";
+  });
+
+}, 2000);
     </script>
   </body>
 </html>
